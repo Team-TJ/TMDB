@@ -10,10 +10,6 @@ interface MovieDetailPageProps {
 }
 
 const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
-  const movieData = await fetchMovieDetail(params.id)
-  
-  
-  const { title, poster_path, backdrop_path, overview, original_title, production_companies } = movieData;
 
   return (
     <div>
@@ -23,16 +19,10 @@ const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
       </div>
 
       {/* backdrop 이미지 */}
-      <MovieBackdrop imgPath={backdrop_path} />
+      <MovieBackdrop id={params.id} />
 
       {/* 영화 상세정보 섹션 */}
-      <MovieDetailSection 
-        id={params.id}
-        title={title} 
-        poster_path={poster_path}
-        overview={overview}
-        original_title={original_title}
-      />
+      <MovieDetailSection id={params.id} />
       
     </div>
   );
