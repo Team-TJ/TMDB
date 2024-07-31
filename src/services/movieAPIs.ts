@@ -13,3 +13,7 @@ export const fetchMovieCredits = async (movieId : string, lang : string = 'en-US
     return response.data;
 }
 
+export const fetchMovieImages = async (movieId : string)  => {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${apiKey}`)
+    return response.data;
+}
