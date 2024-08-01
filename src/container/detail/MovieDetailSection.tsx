@@ -11,10 +11,8 @@ import Breakline from "@/components/Breakline";
 const MovieDetailSection = async ({ id }: { id: string }) => {
   const movieDetail = await fetchMovieDetail(id);
   const movieCredits = await fetchMovieCredits(id);
-  const { title, poster_path, overview, original_title, production_companies, vote_average, vote_count } =
-    movieDetail;
+  const { title, poster_path, overview, original_title, production_companies, vote_average, vote_count } = movieDetail;
 
-    console.log(movieDetail);
     
   let companies = production_companies
     .map((company: any) => company.name)
@@ -28,6 +26,7 @@ const MovieDetailSection = async ({ id }: { id: string }) => {
     .map((person: any) => person.name)
     .join(", ");
 
+  let voteScore = Number(vote_average.toFixed(1));
   return (
     <div className="px-[5%] max-w-[1400px] mx-auto">
       <div className="mt-[2rem]"></div>
@@ -49,7 +48,8 @@ const MovieDetailSection = async ({ id }: { id: string }) => {
           <div className="flex">
             {/* 평점 영역 (임시;로 영역만 채워놓음) */}
             <div className="flex items-end gap-1 h-full">
-              <VoteScoreMeter />
+              <VoteScoreMeter score={voteScore}/>
+
               <div className="flex-col">
               <Image
                   className=" translate-x-1"
