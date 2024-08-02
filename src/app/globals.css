@@ -67,3 +67,16 @@
       @apply bg-background text-foreground;
     }
   }
+
+
+  @layer components {
+    .abs-center {
+      @apply top-[calc(50%-1px)] left-[calc(50%-1px)] translate-x-[-50%] translate-y-[-50%]
+    }
+    .abs-x-center {
+      @apply left-[calc(50%-1px)] translate-x-[-50%]
+    }
+    .abs-y-center {
+      @apply top-[calc(50%-1px)] translate-y-[-50%]
+    }
+  }
