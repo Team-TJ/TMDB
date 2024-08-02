@@ -8,34 +8,27 @@ interface ScoreMeterProps {
 
 const VoteScoreMeter : React.FC<ScoreMeterProps> = ({score, className}) => {
 
-  const getGradeColor = (score : number) => {
-    if (0 <= score && score <= 2.5) {
-      return '#FF0000';
-    } else if (2.5 < score && score <= 5.0) {
-      return '#FF4500'
-    } else if (5.0 < score && score <= 7.5) {
-      return '#ffA500'
-    } else if (7.5 < score && score <= 10) {
-      return '#9ACD32'; 
-    } else {
-      return '#000000';
-    }
+  let gradeColor = '#FFFFFF';
+  const gradeColors = ['#FF0000', '#FF4500', '#ffA500', '#9ACD32'];
+  try {
+    let level = (Math.ceil(score/2.5) || 1) - 1
+    gradeColor = gradeColors[level]
+  } catch {
+    console.error('Error : Unexpected Range : Score must be number between 0~10');
   }
-  
-
   return (
-    <div className='relative'>
+    <div className={cn('relative', className)}>
       <svg viewBox='0 0 100 100' width={52} height={52} className='rounded-full border-solid border-[#ffffff38] border-[1px]'>
         <circle cx={50} cy={50} r={40} strokeWidth={10} stroke='#FFFFFF' opacity={0.2}></circle>
         <circle 
           className='origin-center rotate-[-90deg]' 
           pathLength={10} cx={50} cy={50} r={40} 
-          strokeWidth={10} fill='none' stroke={getGradeColor(score)}
+          strokeWidth={10} fill='none' stroke={gradeColor}
           strokeDashoffset={10 - score} 
           strokeDasharray={10}>
         </circle>
       </svg>
-        <span className={`absolute abs-center text-[14px] font-semibold text-[${getGradeColor(score)}]`}>
+        <span className='absolute abs-center text-[14px] font-semibold' style={{color : gradeColor}}>
           {score}
         </span>
     </div>
