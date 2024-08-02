@@ -14,7 +14,7 @@ const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
   return (
     <div>
       {/* 헤더 (임시) */}
-      <div className=" bg-[#091A38] shadow-black shadow-md h-[80px] text-center">
+      <div className=" bg-[#091A38] shadow-black shadow-md h-[60px] text-center lg:h-[80px]">
         header
       </div>
 

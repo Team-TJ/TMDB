@@ -5,7 +5,7 @@ const MovieBackdrop = async ({ id }: { id: string }) => {
   const movieImages = await fetchMovieImages(id);
   
   return (
-    <div className="absolute top-[80px] w-full h-[300px] overflow-hidden  z-[-1]">
+    <div className="absolute top-[60px] w-full h-[500px] lg:h-[300px] overflow-hidden z-[-1] lg:top-[80px]">
       <Image
         fill
         className="scale-[1] object-cover object-center lg:brightness-[50%]"
