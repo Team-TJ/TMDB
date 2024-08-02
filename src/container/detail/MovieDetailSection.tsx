@@ -3,17 +3,29 @@ import Image from "next/image";
 import OtherInfoContainer from "./otherInfo/OtherInfoContainer";
 import OtherInfoItem from "./otherInfo/OtherInfoItem";
 import VoteScoreMeter from "./VoteScoreMeter";
-import { MdMovieCreation } from "react-icons/md";
-import { FaBuilding, FaUser, FaUserCog } from "react-icons/fa";
+import { MdMovieCreation, MdDateRange } from "react-icons/md";
+import { FaBuilding, FaUser, FaUserCog, FaRegClock } from "react-icons/fa";
 import { fetchMovieDetail, fetchMovieCredits } from "@/services/movieAPIs";
 import Breakline from "@/components/Breakline";
+
 
 const MovieDetailSection = async ({ id }: { id: string }) => {
   const movieDetail = await fetchMovieDetail(id);
   const movieCredits = await fetchMovieCredits(id);
-  const { title, poster_path, overview, original_title, production_companies, vote_average, vote_count } = movieDetail;
+  let {
+    title,
+    poster_path,
+    overview,
+    original_title,
+    production_companies,
+    vote_average,
+    vote_count,
+    release_date,
+    runtime
+  } = movieDetail;
 
-    
+  runtime = Number(runtime);
+
   let companies = production_companies
     .map((company: any) => company.name)
     .join(", ");
@@ -33,7 +45,7 @@ const MovieDetailSection = async ({ id }: { id: string }) => {
 
       <div className="flex justify-between items-center">
         {/* 포스터 이미지 */}
-        <div className="w-[25%] pb-[calc(25%*3/2)] relative max-w-[300px]">
+        <div className="hidden w-[25%] pb-[calc(25%*3/2)] relative max-w-[300px] lg:block">
           <Image
             fill
             className="object-cover object-center"
@@ -43,15 +55,13 @@ const MovieDetailSection = async ({ id }: { id: string }) => {
         </div>
 
         {/* 제목, 평점, 줄거리, 제작사 등 */}
-        <div className="flex flex-col w-[70%]">
+        <div className="flex flex-col w-[100%] lg:w-[70%]">
           <h2 className="text-white text-[min(6vw,4rem)] truncate">{title}</h2>
           <div className="flex">
-            {/* 평점 영역 (임시;로 영역만 채워놓음) */}
-            <div className="flex items-end gap-1 h-full">
-              <VoteScoreMeter score={voteScore}/>
-
-              <div className="flex-col">
-              <Image
+            <div className="flex items-end gap-1 h-full mt-5">
+              <VoteScoreMeter score={voteScore} />
+              <div className="flex-col justify-between">
+                <Image
                   className=" translate-x-1"
                   width={25}
                   height={25}
@@ -60,6 +70,22 @@ const MovieDetailSection = async ({ id }: { id: string }) => {
                 />
                 <small className="text-[#bdbaba]">({vote_count})</small>
               </div>
+
+              <div className="pb-1 pl-2 gap-1 flex items-end leading-none">
+                <FaRegClock color="#FFFFFF" size={12}/>
+                <div className="text-white">
+                  <b className="text-[24px] font-medium mr-1">{Math.floor(runtime/60)}</b>
+                  <small className="mr-1 text-[12px] text-[#BBBBBB]">hour</small>
+                  <b className="text-[24px] font-medium mr-1">{runtime % 60}</b>
+                  <small className=" text-[12px] text-[#BBBBBB]">min</small>
+                </div>
+              </div>
+
+              <div className="pb-1 pl-2 gap-1 flex items-center leading-none">
+                <MdDateRange color="#FFFFFF" size={12}/>
+                <small className="text-[#BBBBBB] text-[12px]">{release_date}</small>
+              </div>
+
             </div>
           </div>
 
