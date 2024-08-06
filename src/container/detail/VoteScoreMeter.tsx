@@ -1,5 +1,6 @@
+'use client'
 import { cn } from '@/lib/utils';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface ScoreMeterProps {
   score : number
@@ -7,6 +8,13 @@ interface ScoreMeterProps {
 }
 
 const VoteScoreMeter : React.FC<ScoreMeterProps> = ({score, className}) => {
+  let [gauge, setGauge] = useState<number>(10);
+  let [showScore, setShowScore] = useState<number>(0)
+
+  useEffect(() => {
+    setGauge(10-score)
+    setShowScore(1)
+  },[score])
 
   let gradeColor = '#FFFFFF';
   const gradeColors = ['#FF0000', '#FF4500', '#ffA500', '#9ACD32'];
@@ -21,14 +29,14 @@ const VoteScoreMeter : React.FC<ScoreMeterProps> = ({score, className}) => {
       <svg viewBox='0 0 100 100' width={52} height={52} className='rounded-full border-solid border-[#ffffff38] border-[1px]'>
         <circle cx={50} cy={50} r={40} strokeWidth={10} stroke='#FFFFFF' opacity={0.2}></circle>
         <circle 
-          className='origin-center rotate-[-90deg]' 
+          className='origin-center rotate-[-90deg] transition-all duration-1000' 
           pathLength={10} cx={50} cy={50} r={40} 
           strokeWidth={10} fill='none' stroke={gradeColor}
-          strokeDashoffset={10 - score} 
+          strokeDashoffset={gauge} 
           strokeDasharray={10}>
         </circle>
       </svg>
-        <span className='absolute abs-center text-[14px] font-semibold' style={{color : gradeColor}}>
+        <span className='absolute abs-center text-[14px] font-semibold transition-opacity duration-1000' style={{color : gradeColor, opacity : showScore}}>
           {score}
         </span>
     </div>
