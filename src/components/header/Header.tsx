@@ -9,7 +9,7 @@ export default function Header() {
     setModalIsVisible((state) => !state);
   }
   return (
-    <header className="lg:h-20 sm:h-16 fixed w-full bg-slate-900 z-40">
+    <header className="lg:h-20 h-16 fixed w-full bg-slate-900 z-40">
       <div className="h-full w-[95%] flex justify-between items-center m-auto">
         <h1 className="h-3/5">
           <Link className="flex h-full  group" href={"/"}>
@@ -28,10 +28,10 @@ export default function Header() {
         </h1>
         <nav className="flex justify-between w-44">
           <button className="flex-auto group" onClick={modalHandler}>
-            <TiThMenu className="text-white lg:h-8 lg:w-8 sm:h-6 sm:w-6 group-active:text-emerald-300" />
+            <TiThMenu className="text-white lg:h-8 lg:w-8 h-6 w-6 group-active:text-emerald-300" />
           </button>
           {modalIsVisible && (
-            <div className="absolute sm:top-16 lg:top-20 w-full h-24 bg-slate-800 flex flex-col justify-between text-white text-sm font-light">
+            <div className="absolute top-16 lg:top-20 w-full h-24 bg-slate-800 flex flex-col justify-between text-white text-sm font-light">
               <Link href={"/"} className="p-1 hover:text-emerald-300">
                 현재 상영작
               </Link>
@@ -45,8 +45,8 @@ export default function Header() {
           )}
           <Link href={"/search"} className="flex-auto">
             <div className="text-white flex text-sm font-semibold transition hover:text-emerald-300">
-              <FaSearch className="lg:h-8 lg:w-8 sm:h-6 sm:w-6" />
-              <span className="sm:ml-1 lg:leading-7">검색하기</span>
+              <FaSearch className="lg:h-8 lg:w-8 h-6 w-6" />
+              <span className="ml-1 lg:leading-7">검색하기</span>
             </div>
           </Link>
         </nav>

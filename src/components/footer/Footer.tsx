@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="bg-[rgba(0,0,0,0.4)] py-[30px] mt-[5vh]">
       <div className="m-auto w-[min(90%,1000px)] text-center flex items-center justify-center flex-col">
-        <h6 className="w-[50px] sm:mb-[10px]">
+        <h6 className="w-[50px] mb-[10px]">
           <img className="w-full" src="/logo-square.png" alt="" />
         </h6>
         <div className="lg:flex-initial">
