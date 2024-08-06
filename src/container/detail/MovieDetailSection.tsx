@@ -23,7 +23,7 @@ const MovieDetailSection = async ({ id }: { id: string }) => {
     release_date,
     runtime
   } = movieDetail;
-
+  
   runtime = Number(runtime);
 
   let companies = production_companies
