@@ -15,8 +15,8 @@ interface MovieSlideType {
 export default function MovieSlide(props: MovieSlideType) {
   return (
     <>
-      <article className="py-[40px] w-[min(90%,1600px)] my-0 mx-auto">
-        <h2 className="flex items-center mb-5 text-2xl after:flex-1 after:content-[''] after:ml-[10px] after:border-t-[1px] after:border-solid after:border-white/30">
+      <article className="pt-[40px] w-full my-0 mx-auto">
+        <h2 className="flex w-[min(90%,1600px)] mx-auto items-center mb-5 text-2xl after:flex-1 after:content-[''] after:ml-[10px] after:border-t-[1px] after:border-solid after:border-white/30">
           {props.title === "popular" && (
             <>
               <SiThemoviedatabase className="text-[#03b3e4] mr-[10px]" />
@@ -45,12 +45,12 @@ export default function MovieSlide(props: MovieSlideType) {
         <div>
           <Carousel
             className="w-full"
-            opts={{ loop: true, align: "center" }}
+            opts={{ loop: true, align: "start", slidesToScroll: 3 }}
             plugins={[]}
           >
-            <CarouselContent className="">
+            <CarouselContent className="w-full py-[25px] -ml-32">
               {Array.from({ length: 10 }).map((_, index) => (
-                <CarouselItem className="basis-auto" key={index}>
+                <CarouselItem className="basis-auto pl-[20px]" key={index}>
                   <MovieContent index={index} />
                 </CarouselItem>
               ))}
