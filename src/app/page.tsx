@@ -1,25 +1,17 @@
 import MainSlide from "@/components/main_slide/MainSlide";
+import MovieSlide from "@/components/movie_slide/MovieSlide";
 
 export default function Home() {
   return (
     <>
-      <section className="main_slide_section"></section>
-      <MainSlide />
-      <section className="move_slide_section">
-        <article className="movie_slide">
-          <h2></h2>
-
-          <div className="movie">
-            <div>
-              <img src="" alt="" />
-            </div>
-            <div>
-              <h3></h3>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        </article>
+      <section className="lg:pt-20 sm:pt-16">
+        <MainSlide />
+      </section>
+      <section className="min-h-[50vh]">
+        <MovieSlide title="popular"></MovieSlide>
+        <MovieSlide title="new"></MovieSlide>
+        <MovieSlide title="rating"></MovieSlide>
+        <MovieSlide title="weekend"></MovieSlide>
       </section>
     </>
   );
