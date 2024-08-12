@@ -37,7 +37,7 @@ const VoteScoreMeter : React.FC<ScoreMeterProps> = ({score, className}) => {
         </circle>
       </svg>
         <span className='absolute abs-center text-[14px] font-semibold transition-opacity duration-1000' style={{color : gradeColor, opacity : showScore}}>
-          {score}
+          {(score === 10 || score === 0) ? score : score.toFixed(1)}
         </span>
     </div>
   )
