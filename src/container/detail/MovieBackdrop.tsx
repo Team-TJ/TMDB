@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import Image from "next/image";
 import {Carousel, CarouselContent,CarouselItem} from "@/components/ui/carousel";
 import Autoplay from 'embla-carousel-autoplay';
@@ -6,6 +7,7 @@ import Fade from 'embla-carousel-fade';
 import React, { useEffect, useRef, useState } from "react";
 import { type CarouselApi } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import getImagePath from "@/utils/getImagePath";
 
 const MovieBackdrop = ({ images }: { images : any[]}) => {
   const [api, setApi] = useState<CarouselApi>();
@@ -18,7 +20,7 @@ const MovieBackdrop = ({ images }: { images : any[]}) => {
           { transform: "scale(1.0)" },
       ],
       {
-          duration: 5000,
+          duration: 7000,
           easing: "linear",
           iterations: 1,
       }
@@ -61,24 +63,25 @@ const MovieBackdrop = ({ images }: { images : any[]}) => {
     <Carousel 
       opts={{loop : true}}
       className="absolute top-[60px] w-full z-[-1] lg:top-[80px]" 
-      plugins={[Autoplay({delay : 5000}), Fade()]}
+      plugins={[Autoplay({delay : 7000}), Fade()]}
       setApi={setApi}
     >
       <CarouselContent>
-        {images.map((image: any, idx : number) => {
+        {Array(4).fill(null).map((_ , i: number) => {
+          const image = images[i];
           return (
-            <CarouselItem key={idx}>
+            <CarouselItem key={i}>
               <div className="relative h-[450px] lg:h-[300px] overflow-hidden">
                 <Image
                   fill
                   className={cn("object-cover object-center lg:brightness-[50%] scale-[1.1]", api && 'scale-[1.0]')}
-                  src={`https://image.tmdb.org/t/p/original/${image.file_path}`}
+                  src={getImagePath(image?.file_path) || `/film${i+1}.jpg`}
                   alt="이미지"
                   ref={imgRef}
                 />
               </div>
             </CarouselItem>
-          );
+          )
         })}
       </CarouselContent>
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#091A38] from-[5%]"></div>
