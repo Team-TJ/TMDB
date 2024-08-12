@@ -2,7 +2,7 @@
 import axios from "axios";
 import MovieBackdrop from "@/container/detail/MovieBackdrop";
 import MovieDetailSection from "@/container/detail/MovieDetailSection";
-import { fetchMovieDetail, fetchMovieImages } from "@/services/movieAPIs";
+import { fetchMovieImages } from "@/services/movieAPIs";
 
 interface MovieDetailPageProps {
   params: {
@@ -14,12 +14,7 @@ const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
   const movieImages = await fetchMovieImages(params.id);
 
   return (
-    <div>
-      {/* 헤더 (임시) */}
-      <div className=" bg-[#091A38] shadow-black shadow-md h-[60px] text-center lg:h-[80px]">
-        header
-      </div>
-
+    <div className="pt-16 lg:pt-20 min-h-[100vh]">
       {/* backdrop 이미지 */}
       <MovieBackdrop images={movieImages.backdrops} />
 
