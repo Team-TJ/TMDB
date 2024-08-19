@@ -2,6 +2,7 @@
 import axios from "axios";
 import MovieBackdrop from "@/container/detail/MovieBackdrop";
 import MovieDetailSection from "@/container/detail/MovieDetailSection";
+import ActorSection from "@/container/detail/ActorSection";
 import { fetchMovieImages, fetchMovieCredits, fetchMovieDetail } from "@/services/movieAPIs";
 
 interface MovieDetailPageProps {
@@ -24,6 +25,10 @@ const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
 
       {/* 영화 상세정보 섹션 */}
       <MovieDetailSection movieCredits={movieCredits} movieDetail={movieDetail} />
+
+      {/* 출연진 섹션 */}
+      <ActorSection movieCredits={movieCredits}/> 
+      
       
     </div>
   );
