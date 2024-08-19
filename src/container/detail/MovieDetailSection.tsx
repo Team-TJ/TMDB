@@ -5,13 +5,10 @@ import OtherInfoItem from "./otherInfo/OtherInfoItem";
 import VoteScoreMeter from "./VoteScoreMeter";
 import { MdMovieCreation, MdDateRange } from "react-icons/md";
 import { FaBuilding, FaUser, FaUserCog, FaRegClock } from "react-icons/fa";
-import { fetchMovieDetail, fetchMovieCredits } from "@/services/movieAPIs";
 import Breakline from "@/components/Breakline";
 import getImagePath from "@/utils/getImagePath";
 
-const MovieDetailSection = async ({ id }: { id: string }) => {
-  const movieDetail = await fetchMovieDetail(id);
-  const movieCredits = await fetchMovieCredits(id);
+const MovieDetailSection = async ({ movieDetail, movieCredits } : { movieDetail: any, movieCredits : any }) => {
   let {
     title,
     poster_path,
