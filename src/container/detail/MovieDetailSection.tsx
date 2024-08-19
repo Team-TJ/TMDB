@@ -4,7 +4,7 @@ import OtherInfoContainer from "./otherInfo/OtherInfoContainer";
 import OtherInfoItem from "./otherInfo/OtherInfoItem";
 import VoteScoreMeter from "./VoteScoreMeter";
 import { MdMovieCreation, MdDateRange } from "react-icons/md";
-import { FaBuilding, FaUser, FaUserCog, FaRegClock } from "react-icons/fa";
+import { FaBuilding, FaUser, FaUserCog, FaRegClock, FaTags } from "react-icons/fa";
 import Breakline from "@/components/Breakline";
 import getImagePath from "@/utils/getImagePath";
 
@@ -19,6 +19,7 @@ const MovieDetailSection = async ({ movieDetail, movieCredits } : { movieDetail:
     vote_count,
     release_date,
     runtime,
+    genres
   } = movieDetail;
 
   runtime = Number(runtime);
@@ -93,8 +94,17 @@ const MovieDetailSection = async ({ movieDetail, movieCredits } : { movieDetail:
           </div>
 
           {/* 장르 */}
-          <div>
-            
+          <div className="flex text-[#BBBBBB] mt-1 items-center gap-1 text-[12px]">
+            <FaTags />
+            <ul className="flex items-center">
+              {genres.map((genre : any) => {
+                return (
+                  <li className="after:content-['/'] after:mx-1 last:after:content-none">
+                    {genre.name}
+                  </li>
+                )
+              })}
+            </ul>
           </div>
 
           <Breakline />
