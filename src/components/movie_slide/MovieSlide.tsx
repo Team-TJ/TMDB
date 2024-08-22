@@ -34,8 +34,6 @@ export default function MovieSlide(props: MovieSlideType) {
       let sliceData = res.data.results.slice(0, 10);
       setData(sliceData);
       setLoading(false);
-      console.log(sliceData);
-      console.log(url);
     });
   }, []);
   if (isLoading) {
