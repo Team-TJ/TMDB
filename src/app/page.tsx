@@ -9,9 +9,9 @@ export default function Home() {
       </section>
       <section className="min-h-[50vh]">
         <MovieSlide title="popular"></MovieSlide>
-        <MovieSlide title="new"></MovieSlide>
-        <MovieSlide title="rating"></MovieSlide>
-        <MovieSlide title="weekend"></MovieSlide>
+        <MovieSlide title="now_playing"></MovieSlide>
+        <MovieSlide title="top_rated"></MovieSlide>
+        <MovieSlide title="upcoming"></MovieSlide>
       </section>
     </>
   );
