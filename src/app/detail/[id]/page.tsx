@@ -2,7 +2,8 @@
 import axios from "axios";
 import MovieBackdrop from "@/container/detail/MovieBackdrop";
 import MovieDetailSection from "@/container/detail/MovieDetailSection";
-import { fetchMovieDetail, fetchMovieImages } from "@/services/movieAPIs";
+import ActorSection from "@/container/detail/ActorSection";
+import { fetchMovieImages, fetchMovieCredits, fetchMovieDetail } from "@/services/movieAPIs";
 
 interface MovieDetailPageProps {
   params: {
@@ -11,20 +12,23 @@ interface MovieDetailPageProps {
 }
 
 const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
-  const movieImages = await fetchMovieImages(params.id);
+  const [movieDetail, movieCredits, movieImages] = await Promise.all([
+    fetchMovieDetail(params.id),
+    fetchMovieCredits(params.id),
+    fetchMovieImages(params.id)
+  ]) 
 
   return (
-    <div>
-      {/* 헤더 (임시) */}
-      <div className=" bg-[#091A38] shadow-black shadow-md h-[60px] text-center lg:h-[80px]">
-        header
-      </div>
-
+    <div className="pt-16 lg:pt-20 min-h-[100vh]">
       {/* backdrop 이미지 */}
       <MovieBackdrop images={movieImages.backdrops} />
 
       {/* 영화 상세정보 섹션 */}
-      <MovieDetailSection id={params.id} />
+      <MovieDetailSection movieCredits={movieCredits} movieDetail={movieDetail} />
+
+      {/* 출연진 섹션 */}
+      <ActorSection movieCredits={movieCredits}/> 
+      
       
     </div>
   );
