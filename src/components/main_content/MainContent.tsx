@@ -36,12 +36,11 @@ export default function MainContent({ movie }: MovieData) {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
+      Authorization: `Bearer ${process.env.TMDB_API_TOKKEN}`,
     },
   };
   useEffect(() => {
     axios.get(url, options).then((res) => {
-      console.log(res.data.results[0]?.key);
       setVideoKey(res.data.results[0]?.key);
     });
   }, []);
