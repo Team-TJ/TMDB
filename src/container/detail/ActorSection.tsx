@@ -15,11 +15,13 @@ const ActorSection = ({ movieCredits }: { movieCredits: any }) => {
       <ul className='flex overflow-x-auto gap-[15px] py-4'>
         {mainCast.map((cast:any) => {
           return (
-            <li key={cast.id} className='flex-shrink-0'>
+            <li key={cast.id} className='flex-shrink-0 group cursor-pointer'>
               <figure className=' border-[#EEEEEE] border-solid border-[5px]'>
-                <Image width={160} height={240} src={getImagePath(cast.profile_path) || '/film1.jpg'} className=' object-cover object-center' alt='배우 사진' />
-                <figcaption className='bg-[#091A38] text-[14px] px-2 w-[160px] h-[60px] p-[10px]'>
-                  <span className='block text-[#8ccda2] font-semibold truncate'>{cast.name}</span>
+                <div className='w-[160px] h-[240px] relative overflow-hidden'>
+                <Image fill src={getImagePath(cast.profile_path) || '/film1.jpg'} className='object-cover group-hover:scale-110 transition-all duration-500' alt='배우 사진' />
+                </div>
+                <figcaption className='bg-[#091A38] text-[14px] px-2 w-[160px] h-[60px] p-[10px] group-hover:bg-[#03b3e4] transition-all duration-500'>
+                  <span className='block text-[#8ccda2] font-semibold truncate group-hover:text-[#EEEEEE] transition-all duration-500'>{cast.name}</span>
                   <span className='block text-[#EEEEEE] truncate'> '{cast.character}' 역</span>
                 </figcaption>
               </figure>
