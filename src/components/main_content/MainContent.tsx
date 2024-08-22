@@ -95,7 +95,7 @@ export default function MainContent({ movie }: MovieData) {
             document.body as HTMLElement
           )}
         <Link
-          href={`/${movie.id}`}
+          href={`/detail/${movie.id}`}
           className="cursor-pointer hover:bg-white/80 hover:text-black py-[8px] px-[30px] border-white border-[1px] border-solid"
         >
           <MdInfo className="inline mr-[2px]" />

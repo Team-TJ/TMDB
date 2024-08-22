@@ -31,7 +31,7 @@ export default function MovieContent({ movie }: MovieProps) {
       <figure className="group px-[10px] h-full box-border w-[249.75px]">
         <Link
           className="block h-full bg-[#03b3e4] transition-all duration-300 group-hover:bg-[#8ccda2] group-hover:scale-110 group-hover:relative group-hover:z-10"
-          href={`/${movie.id}`}
+          href={`/detail/${movie.id}`}
         >
           <div className="relative overflow-hidden">
             <img
