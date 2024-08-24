@@ -2,7 +2,7 @@
 import axios from "axios";
 import MovieBackdrop from "@/container/detail/MovieBackdrop";
 import MovieDetailSection from "@/container/detail/MovieDetailSection";
-import ActorSection from "@/container/detail/ActorSection";
+import ActorSection from "@/container/detail/actor/ActorSection";
 import { fetchMovieImages, fetchMovieCredits, fetchMovieDetail } from "@/services/movieAPIs";
 
 interface MovieDetailPageProps {
