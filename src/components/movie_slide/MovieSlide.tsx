@@ -3,6 +3,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { SiThemoviedatabase } from "react-icons/si";
 import { BsCalendarDayFill } from "react-icons/bs";
@@ -26,11 +28,11 @@ export default function MovieSlide(props: MovieSlideType) {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${process.env.TMDB_API_TOKKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_TOKEN}`,
     },
   };
   useEffect(() => {
-    axios.get(url, options).then((res) => {
+    axios(url, options).then((res) => {
       let sliceData = res.data.results.slice(0, 10);
       setData(sliceData);
       setLoading(false);
@@ -41,7 +43,7 @@ export default function MovieSlide(props: MovieSlideType) {
   }
   return (
     <>
-      <article className="pt-[40px] w-full my-0 mx-auto">
+      <article className="pt-[40px] w-full my-0 mx-auto group/item">
         <h2 className="flex w-[min(90%,1600px)] mx-auto items-center mb-5 text-2xl after:flex-1 after:content-[''] after:ml-[10px] after:border-t-[1px] after:border-solid after:border-white/30">
           {props.title === "popular" && (
             <>
@@ -85,6 +87,8 @@ export default function MovieSlide(props: MovieSlideType) {
                 <div>loading...</div>
               )}
             </CarouselContent>
+            <CarouselPrevious className="left-28 text-white lg:w-16 lg:h-16 text-[10em] bg-transparent border-none [&_svg]:w-96 [&_svg]:h-96 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
+            <CarouselNext className="right-28 text-white lg:w-16 lg:h-16 text-[10em] bg-transparent border-none [&_svg]:w-96 [&_svg]:h-96 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
           </Carousel>
         </div>
       </article>
