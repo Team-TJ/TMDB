@@ -52,6 +52,9 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        deepblue : {
+          DEFAULT : "#091A38"
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

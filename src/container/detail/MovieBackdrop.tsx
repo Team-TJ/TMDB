@@ -84,7 +84,7 @@ const MovieBackdrop = ({ images }: { images : any[]}) => {
           )
         })}
       </CarouselContent>
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#091A38] from-[5%]"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-deepblue from-[5%]"></div>
     </Carousel>
   );
 };
