@@ -12,35 +12,31 @@ import { MdInsertChart } from "react-icons/md";
 import { FaComments } from "react-icons/fa6";
 import MovieContent from "../movie/MovieContent";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useAxios } from "@/hooks/useAxios";
 interface MovieSlideType {
   title?: string;
 }
 
 export default function MovieSlide(props: MovieSlideType) {
   const [data, setData] = useState<[] | null>(null);
-  const [isLoading, setLoading] = useState(true);
 
-  const url = `https://api.themoviedb.org/3/movie/${
-    props.title
-  }?language=ko&page=1${props.title === "upcoming" && "&region=KR"}`;
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_TOKEN}`,
-    },
-  };
+  const url = `3/movie/${props.title}?language=ko&page=1${
+    props.title === "upcoming" && "&region=KR"
+  }`;
+  const [instance] = useAxios();
+
   useEffect(() => {
-    axios(url, options).then((res) => {
-      let sliceData = res.data.results.slice(0, 10);
-      setData(sliceData);
-      setLoading(false);
-    });
+    const getMovie = async () => {
+      try {
+        const response = await instance.get(url);
+        let sliceData = response.data.results.slice(0, 10);
+        setData(sliceData);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    getMovie();
   }, []);
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
   return (
     <>
       <article className="pt-[40px] w-full my-0 mx-auto group/item">
@@ -77,15 +73,13 @@ export default function MovieSlide(props: MovieSlideType) {
             plugins={[]}
           >
             <CarouselContent className="w-full py-[25px] -ml-32">
-              {data ? (
-                data.map((movie, index) => (
-                  <CarouselItem className="basis-auto pl-[20px]" key={index}>
-                    <MovieContent movie={movie} />
-                  </CarouselItem>
-                ))
-              ) : (
-                <div>loading...</div>
-              )}
+              {data
+                ? data.map((movie, index) => (
+                    <CarouselItem className="basis-auto pl-[20px]" key={index}>
+                      <MovieContent movie={movie} />
+                    </CarouselItem>
+                  ))
+                : null}
             </CarouselContent>
             <CarouselPrevious className="left-28 text-white lg:w-16 lg:h-16 text-[10em] bg-transparent border-none [&_svg]:w-96 [&_svg]:h-96 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />
             <CarouselNext className="right-28 text-white lg:w-16 lg:h-16 text-[10em] bg-transparent border-none [&_svg]:w-96 [&_svg]:h-96 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500" />

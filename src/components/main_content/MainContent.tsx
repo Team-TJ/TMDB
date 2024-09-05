@@ -27,7 +27,7 @@ interface MovieData {
 export default function MainContent({ movie }: MovieData) {
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [videoKey, setVideoKey] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+
   function modalHandler() {
     setModalIsVisible((state) => !state);
   }
@@ -93,6 +93,7 @@ export default function MainContent({ movie }: MovieData) {
             </>,
             document.body as HTMLElement
           )}
+
         <Link
           href={`/detail/${movie.id}`}
           className="cursor-pointer hover:bg-white/80 hover:text-black py-[8px] px-[30px] border-white border-[1px] border-solid"
