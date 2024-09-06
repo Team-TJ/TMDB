@@ -9,13 +9,13 @@ const ActorSection = ({ movieCredits }: { movieCredits: any }) => {
   const mainCast = movieCredits.cast.slice(0, 10);
   const [modalConfig, setModalConfig] = useState({
     isShow: false,
-    actorId: null
+    actor: {}
   })
 
   const handleModalShow = (actor: any) => () => {
     setModalConfig({
       isShow: true,
-      actorId: actor.id
+      actor: actor
     })
   }
 
@@ -35,7 +35,7 @@ const ActorSection = ({ movieCredits }: { movieCredits: any }) => {
           })}
         </ul>
       </section>
-      {modalConfig.isShow ? <ActorModal actorId={modalConfig.actorId} closeModal={handleModalClose} /> : null}
+      {modalConfig.isShow ? <ActorModal actor={modalConfig.actor} closeModal={handleModalClose} /> : null}
     </>
   )
 }
