@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import Image from 'next/image';
 import getImagePath from '@/utils/getImagePath';
 import { cn } from '@/lib/utils';
@@ -6,12 +6,14 @@ import { cn } from '@/lib/utils';
 const ActorCard = ({
   actor,
   className,
+  onClick = () => { }
 }: {
   actor: any;
   className?: string;
+  onClick: MouseEventHandler;
 }) => {
   return (
-    <li className={cn('flex-shrink-0 group cursor-pointer', className)}>
+    <li onClick={onClick} className={cn('flex-shrink-0 group cursor-pointer', className)}>
       <figure className=" border-[#EEEEEE] border-solid border-[5px]">
         <div className="w-[160px] h-[240px] relative overflow-hidden">
           <Image

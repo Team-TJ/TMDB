@@ -16,8 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-slate-700">
-        <Spinner />
+      <body className="bg-deepblue">
         <Header />
         {children}
         <Footer />
