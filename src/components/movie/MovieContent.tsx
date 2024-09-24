@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Movie } from "../main_content/MainContent";
+import Image from "next/image";
 interface MovieProps {
   movie: Movie;
 }
@@ -34,10 +35,13 @@ export default function MovieContent({ movie }: MovieProps) {
           href={`/detail/${movie.id}`}
         >
           <div className="relative overflow-hidden">
-            <img
+            <Image
               className="w-full brightness-[80%] transition-all duration-300 "
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt=""
+              width={0}
+              height={0}
+              sizes="100vw"
             />
             <span></span>
             <small></small>
