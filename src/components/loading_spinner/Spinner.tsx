@@ -7,9 +7,9 @@ export default function Spinner() {
   if (isLoadingCnt !== 0 || isLoadingYet) {
     return (
       <div
-        className={
-          "fixed top-0 left-0 w-full h-full bg-black flex content-center justify-center z-50"
-        }
+        // className={
+        //   "fixed top-0 left-0 w-full h-full bg-black flex content-center justify-center z-50"
+        // }
       ></div>
     );
   } else {
