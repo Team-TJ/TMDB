@@ -11,7 +11,7 @@ export default function Spinner() {
     return (
       <div
         className={
-          "fixed top-0 left-0 w-full h-full bg-black flex content-center justify-center z-50"
+          "fixed top-0 left-0 w-full h-full bg-black flex content-center justify-center z-50 opacity-60"
         }
       >
         <div className="relative">
