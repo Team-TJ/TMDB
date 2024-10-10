@@ -19,7 +19,7 @@ const SearchBar:React.FC<any> = ({searchInput,setSearchInput}) => {
           className="border-0 hover:border-0"
         ></Input>
       </div>
-      <nav className="border"> 장르별 네비바</nav>
+      {/* <nav className="border"> 장르별 네비바</nav> */}
     </div>
   );
 };

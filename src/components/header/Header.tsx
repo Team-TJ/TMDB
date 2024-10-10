@@ -32,13 +32,13 @@ export default function Header() {
           </button>
           {modalIsVisible && (
             <div className="absolute top-16 lg:top-20 w-full h-24 bg-slate-800 flex flex-col justify-between text-white text-sm font-light">
-              <Link href={"/"} className="p-1 hover:text-emerald-300">
+              <Link href={"/movielist/now_playing"} className="p-1 hover:text-emerald-300">
                 현재 상영작
               </Link>
-              <Link href={"/"} className="p-1 hover:text-emerald-300">
+              <Link href={"/movielist/popular"} className="p-1 hover:text-emerald-300">
                 인기 영화
               </Link>
-              <Link href={"/"} className="p-1 hover:text-emerald-300">
+              <Link href={"/movielist/upcoming"} className="p-1 hover:text-emerald-300">
                 최신/개봉예정
               </Link>
             </div>
