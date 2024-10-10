@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiKey = process.env.TMDB_API_KEY;
+const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
 
 export const fetchMovieDetail = async (movieId:string, lang : string = 'en-US') => {
