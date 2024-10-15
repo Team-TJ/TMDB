@@ -81,7 +81,7 @@ export default function MainContent({ movie }: MovieData) {
                 <iframe
                   className="w-full h-full"
                   allowFullScreen
-                  src={`http://www.youtube.com/embed/${videoKey}?enablejsapi=1&origin=http://example.com`}
+                  src={`https://www.youtube.com/embed/${videoKey}?enablejsapi=1&origin=http://example.com`}
                 ></iframe>
               </div>
               <button
