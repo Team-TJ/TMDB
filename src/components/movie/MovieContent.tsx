@@ -47,7 +47,9 @@ export default function MovieContent({ movie }: MovieProps) {
             <small></small>
           </div>
           <figcaption className="p-[10px] text-ellipsis overflow-hidden whitespace-nowrap text-white">
-            <h3 className="font-semibold text-[1.2em]">{movie.title}</h3>
+            <h3 className="font-semibold text-[1.2em] text-ellipsis overflow-hidden">
+              {movie.title}
+            </h3>
             <p className="text-[0.8em]">
               {movie.genre_ids.map((num) => genreList[num]).join(" / ")}
             </p>
