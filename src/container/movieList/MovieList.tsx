@@ -9,28 +9,27 @@ import { useEffect, useState } from "react";
 
 const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-const SearchContents = () => {
-  const params = useSearchParams();
-  const [searchResults, setSearchResults] = useState([]);
+const MovieContents = ({listcategory}:{listcategory:any}) => {
+  
+  const [movieList, setMovieList] = useState([]);
   let data: any;
   useEffect(() => {
-    const searchParam = params.get("searchParam");
+    
     const fetchData = async () => {
-      if (searchParam) {
+      if (listcategory) {
         const res = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchParam}&include_adult=false&language=en-US&page=1`
+          `https://api.themoviedb.org/3/movie/${listcategory}?language=en-US&page=1&api_key=${apiKey}`
         );
-        setSearchResults(res.data.results);
+        setMovieList(res.data.results);
       }
     };
-
     fetchData();
-  }, [params]);
+  }, []);
 
   return (
     <div className="flex flex-wrap w-[90%] m-auto mt-10">
-      {searchResults !== undefined
-        ? searchResults.map((movie: any, i: any) => {
+      {movieList !== undefined
+        ? movieList.map((movie: any, i: any) => {
             return (
               <div className="m-1">
                 <MovieContent movie={movie} />
@@ -42,4 +41,4 @@ const SearchContents = () => {
   );
 };
 
-export default SearchContents;
+export default MovieContents;
