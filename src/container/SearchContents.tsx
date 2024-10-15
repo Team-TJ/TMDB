@@ -32,7 +32,7 @@ const SearchContents = () => {
       {searchResults !== undefined
         ? searchResults.map((movie: any, i: any) => {
             return (
-              <div className="m-1">
+              <div className="m-1" key={i}>
                 <MovieContent movie={movie} />
               </div>
             );

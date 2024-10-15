@@ -31,7 +31,7 @@ const MovieContents = ({listcategory}:{listcategory:any}) => {
       {movieList !== undefined
         ? movieList.map((movie: any, i: any) => {
             return (
-              <div className="m-1">
+              <div className="m-1" key={i}>
                 <MovieContent movie={movie} />
               </div>
             );

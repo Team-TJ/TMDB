@@ -1,12 +1,15 @@
 'use client'
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Reactfrom from "react";
+import Reactfrom, { useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
 import { usePathname,useRouter } from "next/navigation";
-const SearchBar:React.FC<any> = ({searchInput,setSearchInput}) => {
+const SearchBar:React.FC<any> = () => {
  const router=useRouter()
- const pathname=usePathname()
+
+ useEffect(()=>{
+  router.push(`?searchParam=''`)
+ },[])
 
   return (
     <div className="max-w-[900px] border bg-white m-auto mt-[80px]">
