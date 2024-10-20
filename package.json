@@ -17,6 +17,7 @@
     "embla-carousel-autoplay": "^8.1.8",
     "embla-carousel-fade": "^8.1.8",
     "embla-carousel-react": "^8.1.8",
+    "fslightbox-react": "^1.7.6",
     "lucide-react": "^0.407.0",
     "next": "14.2.5",
     "react": "^18",
@@ -27,6 +28,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@types/fslightbox-react": "^1.7.8",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
