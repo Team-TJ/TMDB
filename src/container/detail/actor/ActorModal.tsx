@@ -1,11 +1,12 @@
 'use client';
-import React, { MouseEventHandler, useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import Image from 'next/image';
 import getImagePath from '@/utils/getImagePath';
 import { IoPersonSharp } from 'react-icons/io5';
 import InfoListItem from './InfoListItem';
 import { useAxios } from '@/hooks/useAxios';
+import { cn } from '@/lib/utils';
 
 interface ActorModalProps {
   actorId: any;
@@ -16,6 +17,12 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
   const [axios] = useAxios();
   const [actor, setActor] = useState<any>({});
   const [filmo, setFilmo] = useState<any>([]);
+  const [moreState, setMoreState] = useState<any>({ profile: false, filmo: false });
+  const [profileHeight, setProfileHeight] = useState(0);
+  const [filmoHeight, setFilmoHeight] = useState(0);
+  const profileRef = useRef<any>(null);
+  const filmoRef = useRef<any>(null);
+
 
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/person/${actorId}?language=en-US`)
@@ -38,13 +45,39 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
         array = array.slice(0, 20);
         setFilmo([...array])
       })
-
-
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = '';
     };
   }, []);
+
+  useEffect(() => {
+    let basicHeight = 0;
+    if (actor && profileRef.current) {
+      const items = profileRef.current.querySelectorAll('li');
+      for (let i = 0; i < 4; i++) {
+        let itemHeight = items[i].offsetHeight
+        basicHeight += itemHeight
+      }
+      setProfileHeight(moreState.profile ? profileRef.current?.scrollHeight : basicHeight);
+    }
+  }, [moreState.profile, actor])
+
+  useEffect(() => {
+    let basicHeight = 0;
+    if (filmo && filmoRef.current) {
+      const items = filmoRef.current.querySelectorAll('li');
+      for (let i = 0; i < 5; i++) {
+        let itemHeight = items[i]?.offsetHeight || 0
+        basicHeight += itemHeight
+      }
+      setFilmoHeight(moreState.filmo ? filmoRef.current?.scrollHeight : basicHeight);
+    }
+  }, [moreState.filmo, filmo])
+
+  const toggleMoreState = (sectionName: string) => () => {
+    setMoreState({ ...moreState, [sectionName]: !moreState[sectionName] })
+  }
 
   return (
     <div className="fixed top-0 left-0 z-50 bg-[#000000cd] w-full h-full overflow-auto pb-10">
@@ -73,22 +106,35 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
             <span className="text-[16px]">PROFILE</span>
           </h3>
 
-          <ul className="bg-[rgba(255,255,255,0.1)] px-5 mt-5 italic ">
+          <ul
+            className={cn("bg-[rgba(255,255,255,0.1)] px-5 mt-5 italic overflow-hidden transition-[all_0.5s]")}
+            ref={profileRef}
+            style={{ height: profileHeight }}
+          >
             <InfoListItem title='이름' content={actor.name} />
             <InfoListItem title='직업' content={actor.known_for_department} />
             <InfoListItem title='생일' content={actor.birthday ? `${actor.birthday} ~ ${actor.deathday || 'now'}` : null} />
             <InfoListItem title='출생지' content={actor.place_of_birth} />
             {actor.biography ? <InfoListItem content={actor.biography} /> : null}
           </ul>
-        </section>
 
+          {actor.biography ?
+            <button className='w-full p-3 text-white hover:underline' onClick={toggleMoreState('profile')}>
+              {moreState.profile ? 'Close -' : 'More +'}
+            </button> : null}
+        </section>
+        s
         <section className="w-full mt-5">
           <h3 className="text-[#86C49B] flex items-center font-bold gap-2 pb-2 border-b-[1px] border-[#86C49B]">
             <IoPersonSharp size={16} />
             <span className="text-[16px]">FILMOGRAPHY</span>
           </h3>
 
-          <ul className="bg-[rgba(255,255,255,0.1)] px-5 mt-5 italic ">
+          <ul
+            className="bg-[rgba(255,255,255,0.1)] px-5 mt-5 italic overflow-hidden transition-[all_0.5s]"
+            ref={filmoRef}
+            style={{ height: filmoHeight }}
+          >
             {filmo.map((film: any) => {
               return (
                 <InfoListItem
@@ -99,9 +145,11 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
                 />
               )
             })}
-
-
           </ul>
+          {filmo.length > 5 ?
+            <button className='w-full p-3 text-white hover:underline' onClick={toggleMoreState('filmo')}>
+              {moreState.filmo ? 'Close -' : 'More +'}
+            </button> : null}
         </section>
       </div>
     </div>
