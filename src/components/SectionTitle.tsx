@@ -13,7 +13,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ icon, text, className }) =>
   return (
     <div className={cn('flex items-center gap-2', className)}>
       {icon}
-      <h3 className='text-white text-[14px] text-bold'>{text}</h3>
+      <h3 className='text-white text-[20px] text-bold'>{text}</h3>
       <Breakline className='flex-1 m-0 opacity-70' />
     </div>
   )
