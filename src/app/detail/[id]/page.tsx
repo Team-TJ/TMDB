@@ -11,6 +11,7 @@ import {
 } from '@/services/movieAPIs';
 import { MovieImageSection } from '@/container/detail/MovieImageSection';
 import MovieVideoSection from '@/container/detail/MovieVideoSection';
+import SimilarMoviesSection from './../../../container/detail/SimilarMoviesSection';
 
 interface MovieDetailPageProps {
   params: {
@@ -48,8 +49,13 @@ const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
 
       <MovieVideoSection videos={movieVideos.results} />
 
+      <div className='mb-[50px]'></div>
+
+      <SimilarMoviesSection movies={[]} />
+
     </div>
   );
 };
 
 export default Page;
+
