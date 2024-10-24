@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import MovieBackdrop from '@/container/detail/MovieBackdrop';
 import MovieDetailSection from '@/container/detail/MovieDetailSection';
@@ -6,8 +7,10 @@ import {
   fetchMovieImages,
   fetchMovieCredits,
   fetchMovieDetail,
+  fetchMovieVideos,
 } from '@/services/movieAPIs';
 import { MovieImageSection } from '@/container/detail/MovieImageSection';
+import MovieVideoSection from '@/container/detail/MovieVideoSection';
 
 interface MovieDetailPageProps {
   params: {
@@ -16,10 +19,11 @@ interface MovieDetailPageProps {
 }
 
 const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
-  const [movieDetail, movieCredits, movieImages] = await Promise.all([
+  const [movieDetail, movieCredits, movieImages, movieVideos] = await Promise.all([
     fetchMovieDetail(params.id),
     fetchMovieCredits(params.id),
     fetchMovieImages(params.id),
+    fetchMovieVideos(params.id)
   ]);
 
   return (
@@ -42,7 +46,8 @@ const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
 
       <div className='mb-[50px]'></div>
 
-      
+      <MovieVideoSection videos={movieVideos.results} />
+
     </div>
   );
 };
