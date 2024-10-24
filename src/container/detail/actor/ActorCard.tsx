@@ -27,9 +27,16 @@ const ActorCard = ({
           <span className="block text-[#8ccda2] font-semibold truncate group-hover:text-[#EEEEEE] transition-all duration-500">
             {actor.name}
           </span>
-          <span className="block text-[#EEEEEE] truncate">
-            {`'${actor.character}' 역`}
-          </span>
+          {actor.character
+            ?
+            <span className="block text-[#EEEEEE] truncate">
+              {`'${actor.character}' 역`}
+            </span>
+            :
+            <span className='block text-[#999] truncate'>
+              배역 정보 없음
+            </span>
+          }
         </figcaption>
       </figure>
     </li>

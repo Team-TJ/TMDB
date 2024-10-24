@@ -19,27 +19,27 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
 
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/person/${actorId}?language=en-US`)
-    .then(res => {
-      setActor(res.data)
-    })
-    axios.get(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?language=en-US`)
-    .then(res => {
-      let array = [...res.data.cast];
-      array = array.filter(obj => obj.release_date)
-      array.sort((a,b) => {
-        if (a.release_date > b.release_date) {
-          return -1
-        } else if (a.release_date < b.release_date) {
-          return 1
-        } else {
-          return b.popularity - a.popularity
-        }
+      .then(res => {
+        setActor(res.data)
       })
-      array = array.slice(0,20);
-      setFilmo([...array])
-    })
-    
-    
+    axios.get(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?language=en-US`)
+      .then(res => {
+        let array = [...res.data.cast];
+        array = array.filter(obj => obj.release_date)
+        array.sort((a, b) => {
+          if (a.release_date > b.release_date) {
+            return -1
+          } else if (a.release_date < b.release_date) {
+            return 1
+          } else {
+            return b.popularity - a.popularity
+          }
+        })
+        array = array.slice(0, 20);
+        setFilmo([...array])
+      })
+
+
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = '';
@@ -74,11 +74,11 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
           </h3>
 
           <ul className="bg-[rgba(255,255,255,0.1)] px-5 mt-5 italic ">
-            <InfoListItem title='이름' content={actor.name}/>
-            <InfoListItem title='직업' content={actor.known_for_department}/>
-            <InfoListItem title='생일' content={`${actor.birthday} ~ ${actor.deathday || 'now'}`}/>
-            <InfoListItem title='출생지' content={actor.place_of_birth}/>
-            <InfoListItem content={actor.biography}/>
+            <InfoListItem title='이름' content={actor.name} />
+            <InfoListItem title='직업' content={actor.known_for_department} />
+            <InfoListItem title='생일' content={actor.birthday ? `${actor.birthday} ~ ${actor.deathday || 'now'}` : null} />
+            <InfoListItem title='출생지' content={actor.place_of_birth} />
+            {actor.biography ? <InfoListItem content={actor.biography} /> : null}
           </ul>
         </section>
 
@@ -89,18 +89,18 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
           </h3>
 
           <ul className="bg-[rgba(255,255,255,0.1)] px-5 mt-5 italic ">
-            {filmo.map((film : any) => {
+            {filmo.map((film: any) => {
               return (
-                <InfoListItem 
+                <InfoListItem
                   key={film.title}
-                  className=' cursor-pointer hover:bg-[#333]' 
-                  title={film.release_date} 
-                  content={film.title} 
+                  className=' cursor-pointer hover:bg-[#333]'
+                  title={film.release_date}
+                  content={film.title}
                 />
               )
             })}
-            
-            
+
+
           </ul>
         </section>
       </div>

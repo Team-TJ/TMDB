@@ -8,9 +8,9 @@ const InfoListItem = ({
   onClick
 }: {
   title?: string;
-  content: string;
+  content?: string | null;
   className?: string;
-  onClick? : MouseEventHandler
+  onClick?: MouseEventHandler
 }) => {
   return (
     <li
@@ -20,8 +20,13 @@ const InfoListItem = ({
       )}
       onClick={onClick}
     >
-      <b className="text-[#999]">{title}</b>
-      <span className="text-[#EEE]">{content}</span>
+      {content
+        ?
+        <><b className="text-[#999]">{title}</b>
+          <span className="text-[#EEE]">{content}</span></>
+        :
+        <span className='text-[#888]'>{title} 정보가 없습니다.</span>
+      }
     </li>
   );
 };
