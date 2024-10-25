@@ -22,3 +22,8 @@ export const fetchMovieVideos = async (movieId : string, lang : string = 'en-US'
     const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=${lang}`)
     return response.data;
 }
+
+export const fetchSimilarMovies = async (movieId : string, lang : string = 'en-US')  => {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}&language=${lang}&page=1}`)
+    return response.data;
+}
