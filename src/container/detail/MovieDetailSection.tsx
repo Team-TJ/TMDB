@@ -48,7 +48,7 @@ const MovieDetailSection = async ({ movieDetail, movieCredits }: { movieDetail: 
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-center"
-            src={getImagePath(poster_path, "w500") || "/film1.jpg"}
+            src={getImagePath(poster_path, "w500") || "/no-image.jpg"}
             alt="포스터"
           />
         </div>
