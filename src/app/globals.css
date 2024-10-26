@@ -84,3 +84,26 @@
       clip-path: polygon(75% 0%, 100% 0%, 100% 13.6%);
     }
   }
+
+  /* 스크롤바 넓이 지정 */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+/* 스크롤바 트랙 꾸미기 */
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 5px;
+}
+
+/* 스크롤바 손잡이 꾸미기 */
+::-webkit-scrollbar-thumb {
+  background: #02B0E0;
+  border-radius: 5px;
+}
+
+/* 스크롤바 손잡이 호버 시 색 */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
