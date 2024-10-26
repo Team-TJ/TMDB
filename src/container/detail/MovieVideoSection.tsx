@@ -22,7 +22,6 @@ const MovieVideoSection: React.FC<MovieVideoSectionProps> = ({ videos }) => {
   useEffect(() => {
     const list = videos.filter((video: any) => video.site === "YouTube")
     setYoutubeVideos(list.slice(0, 20))
-    console.log(list[0]);
   }, [])
 
   const openLightboxOnSlide = (number: number) => {
@@ -52,6 +51,7 @@ const MovieVideoSection: React.FC<MovieVideoSectionProps> = ({ videos }) => {
                   <div className="w-[240px] h-[135px] relative overflow-hidden">
                     <Image
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       src={`https://img.youtube.com/vi/${video.key}/0.jpg`}
                       className="object-cover transition-all duration-300 group-hover:brightness-50"
                       alt="영상 썸네일"

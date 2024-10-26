@@ -8,6 +8,7 @@ import {
   fetchMovieCredits,
   fetchMovieDetail,
   fetchMovieVideos,
+  fetchSimilarMovies,
 } from '@/services/movieAPIs';
 import { MovieImageSection } from '@/container/detail/MovieImageSection';
 import MovieVideoSection from '@/container/detail/MovieVideoSection';
@@ -20,11 +21,12 @@ interface MovieDetailPageProps {
 }
 
 const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
-  const [movieDetail, movieCredits, movieImages, movieVideos] = await Promise.all([
+  const [movieDetail, movieCredits, movieImages, movieVideos, similarMovies] = await Promise.all([
     fetchMovieDetail(params.id),
     fetchMovieCredits(params.id),
     fetchMovieImages(params.id),
-    fetchMovieVideos(params.id)
+    fetchMovieVideos(params.id),
+    fetchSimilarMovies(params.id)
   ]);
 
   return (
@@ -51,7 +53,7 @@ const Page: React.FC<MovieDetailPageProps> = async ({ params }) => {
 
       <div className='mb-[50px]'></div>
 
-      <SimilarMoviesSection movies={[]} />
+      <SimilarMoviesSection movies={similarMovies.results} />
 
     </div>
   );
