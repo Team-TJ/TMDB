@@ -7,13 +7,17 @@ import { IoPersonSharp } from 'react-icons/io5';
 import InfoListItem from './InfoListItem';
 import { useAxios } from '@/hooks/useAxios';
 import { cn } from '@/lib/utils';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface ActorModalProps {
   actorId: any;
   closeModal: MouseEventHandler;
+  params: {
+    id: string;
+  };
 }
 
-const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
+const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal, params }) => {
   const [axios] = useAxios();
   const [actor, setActor] = useState<any>({});
   const [filmo, setFilmo] = useState<any>([]);
@@ -22,7 +26,8 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
   const [filmoHeight, setFilmoHeight] = useState(0);
   const profileRef = useRef<any>(null);
   const filmoRef = useRef<any>(null);
-
+  const { push } = useRouter();
+  const pathName = usePathname();
 
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/person/${actorId}?language=ko-KR`)
@@ -132,7 +137,7 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
           </h3>
 
           <ul
-            className="bg-[rgba(255,255,255,0.1)] px-5 mt-5 italic overflow-hidden transition-[all_0.5s]"
+            className="bg-[rgba(255,255,255,0.1)] mt-5 italic overflow-hidden transition-[all_0.5s]"
             ref={filmoRef}
             style={{ height: filmoHeight }}
           >
@@ -140,7 +145,8 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
               return (
                 <InfoListItem
                   key={film.title}
-                  className=' cursor-pointer hover:bg-[#333]'
+                  onClick={() => pathName.slice(8) == film.id ? 0 : push(`/detail/${film.id}`)}
+                  className={cn(pathName.slice(8) == film.id ? 'font-bold bg-[#b8b4b42c]' : 'cursor-pointer hover:bg-[#3333338e]')}
                   title={film.release_date}
                   content={film.title}
                 />
