@@ -18,6 +18,7 @@ const ActorCard = ({
         <div className="w-[160px] h-[240px] relative overflow-hidden">
           <Image
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             src={getImagePath(actor.profile_path) || '/film1.jpg'}
             className="object-cover group-hover:scale-110 transition-all duration-500"
             alt="배우 사진"

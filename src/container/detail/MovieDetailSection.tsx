@@ -46,6 +46,7 @@ const MovieDetailSection = async ({ movieDetail, movieCredits } : { movieDetail:
         <div className="hidden w-[25%] pb-[calc(25%*3/2)] relative max-w-[300px] lg:block">
           <Image
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-center"
             src={getImagePath(poster_path, "w500") || "/poster_default.jpg"}
             alt="포스터"

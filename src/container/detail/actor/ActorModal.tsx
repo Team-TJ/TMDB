@@ -94,6 +94,7 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
         <div className="w-[220px] h-[350px] md:w-[310px] md:h-[460px] border-white border-solid border-[5px] relative">
           <Image
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt="배우 사진"
             src={getImagePath(actor.profile_path) || '/film1.jpg'}
             className="object-cover object-center"
