@@ -25,11 +25,11 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
 
 
   useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/person/${actorId}?language=en-US`)
+    axios.get(`https://api.themoviedb.org/3/person/${actorId}?language=ko-KR`)
       .then(res => {
         setActor(res.data)
       })
-    axios.get(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?language=en-US`)
+    axios.get(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?language=ko-KR`)
       .then(res => {
         let array = [...res.data.cast];
         array = array.filter(obj => obj.release_date)
