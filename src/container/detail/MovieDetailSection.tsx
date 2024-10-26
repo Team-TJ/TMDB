@@ -8,7 +8,7 @@ import { FaBuilding, FaUser, FaUserCog, FaRegClock, FaTags } from "react-icons/f
 import Breakline from "@/components/Breakline";
 import getImagePath from "@/utils/getImagePath";
 
-const MovieDetailSection = async ({ movieDetail, movieCredits } : { movieDetail: any, movieCredits : any }) => {
+const MovieDetailSection = async ({ movieDetail, movieCredits }: { movieDetail: any, movieCredits: any }) => {
   let {
     title,
     poster_path,
@@ -48,7 +48,7 @@ const MovieDetailSection = async ({ movieDetail, movieCredits } : { movieDetail:
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-center"
-            src={getImagePath(poster_path, "w500") || "/poster_default.jpg"}
+            src={getImagePath(poster_path, "w500") || "/film1.jpg"}
             alt="포스터"
           />
         </div>
@@ -98,7 +98,7 @@ const MovieDetailSection = async ({ movieDetail, movieCredits } : { movieDetail:
           <div className="flex text-[#BBBBBB] mt-1 items-center gap-1 text-[12px]">
             <FaTags />
             <ul className="flex items-center">
-              {genres.map((genre : any) => {
+              {genres.map((genre: any) => {
                 return (
                   <li key={genre.id} className="after:content-['/'] after:mx-1 last:after:content-none">
                     {genre.name}

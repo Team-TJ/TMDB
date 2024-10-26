@@ -37,7 +37,7 @@ const SimilarMoviesSection: React.FC<SimilarMoviesSectionProps> = ({ movies }) =
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-center "
-                  src={getImagePath(movie.poster_path, "w500") || "/poster_default.jpg"}
+                  src={getImagePath(movie.poster_path, "w500") || "/film1.jpg"}
                   alt="포스터"
                 />
               </div>
