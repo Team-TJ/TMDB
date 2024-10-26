@@ -79,4 +79,8 @@
     .abs-y-center {
       @apply top-[calc(50%-1px)] translate-y-[-50%]
     }
+    .vote-clip {
+      @apply w-full h-full pointer-events-none;
+      clip-path: polygon(75% 0%, 100% 0%, 100% 13.6%);
+    }
   }
