@@ -27,15 +27,10 @@ const SimilarMoviesSection: React.FC<SimilarMoviesSectionProps> = ({
       {movies.length ? (
         <ul className="flex flex-wrap gap-5 py-6 px-3">
           {movies.slice(0, 10).map((movie: any) => {
-            let gradeColor = '#FFFFFF';
             const gradeColors = ['#FF0000', '#FF4500', '#ffA500', '#9ACD32'];
             let score = movie.vote_average;
-            try {
-              let level = (Math.ceil(score/2.5) || 1) - 1
-              gradeColor = gradeColors[level]
-            } catch {
-              console.error('Error : Unexpected Range : Score must be number between 0~10');
-            }
+            let level = (Math.ceil(score / 2.5) || 1) - 1
+            let gradeColor = gradeColors[level]
             return (
               <li
                 key={movie.id}
@@ -66,8 +61,10 @@ const SimilarMoviesSection: React.FC<SimilarMoviesSectionProps> = ({
                     {movie.release_date}
                   </small>
                 </div>
-                <div className='absolute top-0 vote-clip' style={{background : gradeColor}}>
-                  <span className='absolute top-[2%] right-[4%] sm:top-[2%] sm:right-[3%] text-[#EEEEEE] sm:text-[.8rem]'>
+                <div className='absolute top-0 vote-clip' style={{ background: gradeColor }}>
+                </div>
+                <div className='absolute top-0 right-0 w-[13%] h-[6.8%] flex items-center justify-center'>
+                  <span className='text-[#EEEEEE] font-semibold text-[max(1vw,14px)] sm:text-[max(.8vw,12px)]'>
                     {(score === 10 || score === 0) ? score : score.toFixed(1)}
                   </span>
                 </div>
