@@ -43,7 +43,7 @@ const SimilarMoviesSection: React.FC<SimilarMoviesSectionProps> = ({
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-center "
                     src={
-                      getImagePath(movie.poster_path, 'w500') || '/film1.jpg'
+                      getImagePath(movie.poster_path, 'w500') || '/no-image.jpg'
                     }
                     alt="포스터"
                   />

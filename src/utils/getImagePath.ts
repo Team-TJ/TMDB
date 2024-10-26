@@ -1,4 +1,4 @@
-const getImagePath = (fileName : string | undefined, imageSize : 'original' | 'w500' = 'original') => {
+const getImagePath = (fileName? : string , imageSize : 'original' | 'w500' = 'original') => {
     return fileName ? `https://image.tmdb.org/t/p/${imageSize}${fileName}` : null
 }
 

@@ -47,7 +47,7 @@ export const MovieImageSection: React.FC<MovieImageSectionProps> = ({
                     <Image
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      src={getImagePath(image.file_path) || '/film1.jpg'}
+                      src={getImagePath(image.file_path) || '/no-image.jpg'}
                       className="object-cover group-hover:scale-110 transition-all duration-500"
                       alt="영화 사진"
                     />
