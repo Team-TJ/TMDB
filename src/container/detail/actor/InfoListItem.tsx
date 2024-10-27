@@ -15,17 +15,17 @@ const InfoListItem = ({
   return (
     <li
       className={cn(
-        'py-2 flex justify-center gap-3 border-b-[rgba(255,255,255,0.2)] border-b-[.3px] last:border-b-0',
+        'py-2 flex justify-center gap-1 border-b-[rgba(255,255,255,0.2)] border-b-[.3px] last:border-b-0 text-[12px] md:text-[14px] ',
         className
       )}
       onClick={onClick}
     >
       {content
         ?
-        <><b className="text-[#999]">{title}</b>
-          <span className="text-[#EEE]">{content}</span></>
+        <><b className="text-[#999] truncate pr-1">{title}</b>
+          <span className="text-[#EEE] truncate pr-2">{content}</span></>
         :
-        <span className='text-[#888]'>{title} 정보가 없습니다.</span>
+        <span className='text-[#888] truncate'>{title} 정보가 없습니다.</span>
       }
     </li>
   );

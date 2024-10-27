@@ -77,12 +77,22 @@ const config = {
           "100%" : {
             transform : "scale(1.0)"
           }
+        }, 
+        "loading-spin" : {
+          '0%' : {
+            transform : "translate(-50%, -50%) rotate(0deg);"
+          }, 
+          "100%" : {
+            transform : "translate(-50%, -50%) rotate(360deg)"
+          }
         }
+
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "image-zoom-out" : "image-zoom-out 5s linear 1"
+        "image-zoom-out" : "image-zoom-out 5s linear 1",
+        "loading-spin" : "loading-spin 1s linear infinite"
       },
     },
   },
@@ -90,3 +100,4 @@ const config = {
 } satisfies Config
 
 export default config
+

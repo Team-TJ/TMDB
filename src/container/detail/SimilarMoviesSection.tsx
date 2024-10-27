@@ -7,6 +7,7 @@ import Image from 'next/image';
 import getImagePath from './../../utils/getImagePath';
 import { MOVIE_GENRE_NAME } from '@/constants/movieConstants';
 import { useRouter } from 'next/navigation';
+import LazyImage from '@/components/LazyImage';
 
 interface SimilarMoviesSectionProps {
   movies: any;
@@ -37,7 +38,14 @@ const SimilarMoviesSection: React.FC<SimilarMoviesSectionProps> = ({
                 onClick={() => push(`/detail/${movie.id}`)}
                 className="w-full sm:w-[calc((100%-1.25rem*1)/2)] md:w-[calc((100%-1.25rem*2)/3)] lg:w-[calc((100%-1.25rem*4)/5)] relative cursor-pointer group hover:scale-105 transition-all duration-300"
               >
-                <div className="w-full pb-[150%] relative ">
+                <LazyImage
+                  src={getImagePath(movie.poster_path, 'w500') || '/no-image.jpg'}
+                  containerClass='w-full pb-[150%] relative'
+                  ImageClass="object-cover object-center0"
+                  alt='포스터'
+                />
+
+                {/* <div className="w-full pb-[150%] relative ">
                   <Image
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -47,7 +55,8 @@ const SimilarMoviesSection: React.FC<SimilarMoviesSectionProps> = ({
                     }
                     alt="포스터"
                   />
-                </div>
+                </div> */}
+
                 <div className="bg-[#03B3E4] w-full h-[85px] flex flex-col text-[#FFF] py-1 px-3 justify-center group-hover:bg-[#8CCDA2] transition-all duration-300">
                   <h5 className="font-bold truncate text-[18px]">
                     {movie.title}

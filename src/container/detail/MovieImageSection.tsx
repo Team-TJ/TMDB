@@ -6,6 +6,7 @@ import { FaRegImages } from 'react-icons/fa';
 import Image from 'next/image';
 import getImagePath from '@/utils/getImagePath';
 import FsLightbox from 'fslightbox-react';
+import LazyImage from '@/components/LazyImage';
 
 interface MovieImageSectionProps {
   images: any;
@@ -43,15 +44,12 @@ export const MovieImageSection: React.FC<MovieImageSectionProps> = ({
                   className="flex-shrink-0 group cursor-pointer border-[#EEEEEE] border-solid border-[5px]"
                   onClick={() => openLightboxOnSlide(idx + 1)}
                 >
-                  <div className="w-[240px] h-[135px] relative overflow-hidden">
-                    <Image
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      src={getImagePath(image.file_path) || '/no-image.jpg'}
-                      className="object-cover group-hover:scale-110 transition-all duration-500"
-                      alt="영화 사진"
-                    />
-                  </div>
+                  <LazyImage
+                    src={getImagePath(image.file_path) || '/no-image.jpg'}
+                    containerClass='w-[240px] h-[135px] overflow-hidden'
+                    ImageClass="object-cover group-hover:scale-110 transition-all duration-500"
+                    alt='영화 사진'
+                  />
                 </li>
               );
             })}

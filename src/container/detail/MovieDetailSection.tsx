@@ -7,6 +7,7 @@ import { MdMovieCreation, MdDateRange } from "react-icons/md";
 import { FaBuilding, FaUser, FaUserCog, FaRegClock, FaTags } from "react-icons/fa";
 import Breakline from "@/components/Breakline";
 import getImagePath from "@/utils/getImagePath";
+import LazyImage from '@/components/LazyImage';
 
 const MovieDetailSection = async ({ movieDetail, movieCredits }: { movieDetail: any, movieCredits: any }) => {
   let {
@@ -43,15 +44,13 @@ const MovieDetailSection = async ({ movieDetail, movieCredits }: { movieDetail: 
 
       <div className="flex justify-between items-center">
         {/* 포스터 */}
-        <div className="hidden w-[25%] pb-[calc(25%*3/2)] relative max-w-[300px] lg:block">
-          <Image
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover object-center"
-            src={getImagePath(poster_path, "w500") || "/no-image.jpg"}
-            alt="포스터"
-          />
-        </div>
+        <LazyImage
+          src={getImagePath(poster_path, "w500") || "/no-image.jpg"}
+          containerClass='hidden w-[25%] pb-[calc(25%*3/2)] h-0 max-w-[300px] lg:block'
+          ImageClass="object-cover object-center"
+          alt='포스터'
+          priority
+        />
 
         {/* 상세 정보 */}
         <div className="flex flex-col w-[100%] lg:w-[70%]">
