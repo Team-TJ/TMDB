@@ -102,6 +102,16 @@
       width: 100%;
       height: 100%;
     }
+
+    .loading-spinner-color-dr {
+      border: 8px solid rgba(2, 2, 2, 0.1);
+      border-top: 8px solid rgba(164, 162, 162, 0.1);
+    }
+
+    .loading-spinner-color-br {
+      border: 8px solid #02b0e06c;
+      border-top: 8px solid rgba(80, 217, 255, 0.753);
+    }
   }
 
   /* 스크롤바 넓이 지정 */
@@ -128,3 +138,9 @@
 }
 
 
+@media screen and (max-width: 500px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 8px; /* 스크롤바 숨기기 */
+  }
+}
