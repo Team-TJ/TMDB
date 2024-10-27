@@ -7,6 +7,8 @@ import { IoIosPlayCircle } from "react-icons/io";
 import Image from 'next/image';
 import getImagePath from '@/utils/getImagePath';
 import FsLightbox from 'fslightbox-react';
+import LazyImage from '@/components/LazyImage';
+
 
 interface MovieVideoSectionProps {
   videos?: any;
@@ -48,13 +50,12 @@ const MovieVideoSection: React.FC<MovieVideoSectionProps> = ({ videos }) => {
                   className="flex-shrink-0 group cursor-pointer border-[#EEEEEE] border-solid border-[5px]"
                   onClick={() => openLightboxOnSlide(idx + 1)}
                 >
-                  <div className="w-[240px] h-[135px] relative overflow-hidden">
-                    <Image
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  <div className='relative w-[240px] h-[135px]'>
+                    <LazyImage
                       src={`https://img.youtube.com/vi/${video.key}/0.jpg`}
-                      className="object-cover transition-all duration-300 group-hover:brightness-50"
-                      alt="영상 썸네일"
+                      containerClass='w-full h-full'
+                      ImageClass="object-cover transition-all duration-300 group-hover:brightness-50"
+                      alt='영상 썸네일'
                     />
                     <IoIosPlayCircle color={'#FFFFFF'} size={42} className='opacity-0 absolute abs-center group-hover:opacity-100 transition-all duration-300' />
                   </div>

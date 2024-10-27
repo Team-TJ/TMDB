@@ -12,12 +12,14 @@ interface LazyImageProps {
   containerClass?: string;
   ImageClass?: string;
   alt?: string;
+  priority?: boolean;
 }
 
 
-const LazyImage: React.FC<LazyImageProps> = ({ width, height, src, containerClass, ImageClass, alt }) => {
+const LazyImage: React.FC<LazyImageProps> = ({ width, height, src, containerClass, ImageClass, alt, priority }) => {
   const [imgSrc, setImgSrc] = useState(src);
   const [loading, setLoading] = useState(true);
+
 
   const handleLoad = () => {
     setLoading(false);
@@ -31,7 +33,7 @@ const LazyImage: React.FC<LazyImageProps> = ({ width, height, src, containerClas
   return (
     <div style={{ width: width, height: height }} className={cn("relative", containerClass)}>
       {loading ?
-        <div className='loading-container'>
+        <div className={cn('absolute top-0 loading-container', containerClass?.split(' ').filter((cn) => cn.includes('pb-'))[0])}>
           <div className='loading-spinner animate-loading-spin'></div>
         </div>
         : null}
@@ -43,6 +45,7 @@ const LazyImage: React.FC<LazyImageProps> = ({ width, height, src, containerClas
         onLoad={handleLoad}
         className={cn(ImageClass)}
         alt={alt || "lazy image"}
+        priority={priority || false}
       />
     </div>
   )
