@@ -12,12 +12,9 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 interface ActorModalProps {
   actorId: any;
   closeModal: MouseEventHandler;
-  params: {
-    id: string;
-  };
 }
 
-const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal, params }) => {
+const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
   const [axios] = useAxios();
   const [actor, setActor] = useState<any>({});
   const [filmo, setFilmo] = useState<any>([]);
