@@ -28,12 +28,12 @@ const ActorModal: React.FC<ActorModalProps> = ({ actorId, closeModal }) => {
   const pathName = usePathname();
 
   useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/person/${actorId}?language=ko-KR`)
+    axios.get(`https://api.themoviedb.org/3/person/${actorId}?language=en-US`)
       .then(res => {
         setActor(res.data)
         setLoading((actor && filmo) ? false : true)
       })
-    axios.get(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?language=ko-KR`)
+    axios.get(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?language=en-US`)
       .then(res => {
         let array = [...res.data.cast];
         array = array.filter(obj => obj.release_date)

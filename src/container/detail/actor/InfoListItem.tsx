@@ -5,12 +5,12 @@ const InfoListItem = ({
   title,
   content,
   className,
-  onClick
+  onClick,
 }: {
   title?: string;
   content?: string | null;
   className?: string;
-  onClick?: MouseEventHandler
+  onClick?: MouseEventHandler;
 }) => {
   return (
     <li
@@ -23,9 +23,9 @@ const InfoListItem = ({
       {content
         ?
         <><b className="text-[#999] truncate pr-1">{title}</b>
-          <span className="text-[#EEE] truncate pr-2">{content}</span></>
+          <span className={cn("text-[#EEE] pr-2", title && 'truncate')}>{content}</span></>
         :
-        <span className='text-[#888] truncate'>{title} 정보가 없습니다.</span>
+        <span className={cn('text-[#888] truncate')}>{title} 정보가 없습니다.</span>
       }
     </li>
   );
